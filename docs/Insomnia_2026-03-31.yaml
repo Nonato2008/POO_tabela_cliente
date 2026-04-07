@@ -1,0 +1,346 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_d74dd7e8314d4776bc8f1380ba575f05
+  created: 1770139400127
+  modified: 1770139400127
+  description: ""
+collection:
+  - name: Manipular XML
+    meta:
+      id: fld_23d0c348379143e4ad949f3be2625872
+      created: 1770139416635
+      modified: 1770139416635
+      sortKey: -1770139416635
+      description: ""
+  - name: versionamento-bd
+    meta:
+      id: fld_65e87f8a86414977b0410b8b6a21515a
+      created: 1770737692889
+      modified: 1770737692889
+      sortKey: -1770737692889
+      description: ""
+  - name: Upload
+    meta:
+      id: fld_20b7b0ebfc034ee7ab11d5b9a713ff08
+      created: 1770748296278
+      modified: 1770748296278
+      sortKey: -1770748296279
+      description: ""
+  - name: INSERIR
+    meta:
+      id: fld_337d20711a374c609f47b79e14cd51f9
+      created: 1771959077011
+      modified: 1771959077011
+      sortKey: -1771959077011
+      description: ""
+    children:
+      - name: PRODUTOS
+        meta:
+          id: fld_5b040e8156cc439e9b6116a3036b504c
+          created: 1772545168655
+          modified: 1772545168655
+          sortKey: -1772545168655
+          description: ""
+      - name: CATEGORIA
+        meta:
+          id: fld_9ee4906ba25e4ba6849eb41eaf7bf43b
+          created: 1772546531714
+          modified: 1772546531714
+          sortKey: -1772546531714
+          description: ""
+  - name: INSERIR_CORRECAO
+    meta:
+      id: fld_c43cd6cd40524b82b7590012c1a606fb
+      created: 1773140162848
+      modified: 1773140162848
+      sortKey: -1773140162848
+      description: ""
+    children:
+      - name: CATEGORIA
+        meta:
+          id: fld_7a0ceea1f8a74383bda5ab654194753f
+          created: 1773142372445
+          modified: 1773142372445
+          sortKey: -1773142372445
+          description: ""
+      - name: PRODUTOS
+        meta:
+          id: fld_001857096d164167a5d90ce537186e6b
+          created: 1773142442881
+          modified: 1773142442881
+          sortKey: -1773142442881
+          description: ""
+  - name: POO_Produtos_e_categorias
+    meta:
+      id: fld_f62c5f8a052c4ffbacca5218fc03c3fc
+      created: 1774964133706
+      modified: 1774964133706
+      sortKey: -1774964133706
+      description: ""
+    children:
+      - name: CATEGORIAS
+        meta:
+          id: fld_3b97338d50c649dabf4e22cbf8f6889d
+          created: 1774969389055
+          modified: 1774969389055
+          sortKey: -1774969389055
+          description: ""
+        children:
+          - url: localhost:8000/categorias
+            name: New Request
+            meta:
+              id: req_97f5cf49ad6c46cba76029ef4a71203a
+              created: 1774964141280
+              modified: 1774970102555
+              isPrivate: false
+              description: ""
+              sortKey: -1774969408689
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nome":"Teste2",
+                	"descricao": null
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: localhost:8000/categorias
+            name: New Request
+            meta:
+              id: req_08c52d5c3743450a9bcf33e47275c5f3
+              created: 1774964142914
+              modified: 1774969410659
+              isPrivate: false
+              description: ""
+              sortKey: -1774969408589
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: localhost:8000/categorias/3
+            name: New Request
+            meta:
+              id: req_f8547e92e32341a3964ecaebb803a097
+              created: 1774965596225
+              modified: 1774970122046
+              isPrivate: false
+              description: ""
+              sortKey: -1774969408489
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: localhost:8000/categorias/3
+            name: New Request
+            meta:
+              id: req_dad69e1572bb43d8aa5b42eef203b5a8
+              created: 1774965597616
+              modified: 1774975730373
+              isPrivate: false
+              description: ""
+              sortKey: -1774969408564
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nome": "renomeado2",
+                	"descricao": null
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: PRODUTOS
+        meta:
+          id: fld_b08bbb90345040f485d39fd477f34ffb
+          created: 1774974731253
+          modified: 1774974731253
+          sortKey: -1774974731253
+          description: ""
+        children:
+          - url: localhost:8000/produtos/1
+            name: New Request
+            meta:
+              id: req_078ac755155f41a69261293657f500fc
+              created: 1774974733391
+              modified: 1774979260251
+              isPrivate: false
+              description: ""
+              sortKey: -1774974733391
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: localhost:8000/produtos/2
+            name: New Request
+            meta:
+              id: req_eac592a8f78443259abdfeee90105f27
+              created: 1774974734795
+              modified: 1774979024509
+              isPrivate: false
+              description: ""
+              sortKey: -1774974734795
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"idCategoria": 2,
+                	"nome": "testeRenome",
+                	"valor": 500.00
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: localhost:8000/produtos
+            name: New Request
+            meta:
+              id: req_f2db55a4e9d04a12819478c05c7e61fd
+              created: 1774974735993
+              modified: 1774975701518
+              isPrivate: false
+              description: ""
+              sortKey: -1774974735993
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: localhost:8000/produtos
+            name: New Request
+            meta:
+              id: req_302a601ef0b842d192724334dbbfca0f
+              created: 1774974737039
+              modified: 1774976345319
+              isPrivate: false
+              description: ""
+              sortKey: -1774974737039
+            method: POST
+            body:
+              mimeType: multipart/form-data
+              params:
+                - name: idCategoria
+                  value: "2"
+                  description: ""
+                  disabled: false
+                - name: image
+                  value: ""
+                  description: ""
+                  disabled: false
+                  fileName: C:\Users\49216365838\Documents\images (1).jpeg
+                  type: file
+                - name: nome
+                  value: novoPRoduto
+                  description: ""
+                  disabled: false
+                - name: valor
+                  value: "50.00"
+                  description: ""
+                  disabled: false
+            headers:
+              - name: Content-Type
+                value: multipart/form-data
+              - name: User-Agent
+                value: insomnia/12.4.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_bab200f999250b0546e359d22ce38d37b3459774
+    created: 1770139400176
+    modified: 1770139400176
+environments:
+  name: Base Environment
+  meta:
+    id: env_bab200f999250b0546e359d22ce38d37b3459774
+    created: 1770139400161
+    modified: 1770139400161
+    isPrivate: false
