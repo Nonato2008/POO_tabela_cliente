@@ -36,19 +36,19 @@ const clienteRepository = {
             conn.release();
         }
     },
-    alterar: async (cliente, telefone, endereco,id) => {
+    alterar: async (cliente, telefone, endereco, id) => {
         const conn = await connection.getConnection();
 
         try {
             await conn.beginTransaction();
-            
+
             // UPDATE CLIENTE
             const sqlCli = 'UPDATE clientes SET Nome = ?, Cpf = ? WHERE id = ?'
             const valuesCli = [cliente.nome, cliente.cpf, id]
             const [rowsCli] = await conn.execute(sqlCli, valuesCli);
 
             console.log(telefone.id, telefone.telefones, id);
-            
+
             //UPDATE TELEFONE
             const sqlTel = 'UPDATE telefones SET Telefone = ? WHERE idCliente=?'
             const valuesTel = [telefone.telefones, id];
@@ -71,78 +71,23 @@ const clienteRepository = {
         finally {
             conn.release();
         }
-        
+
     },
 
     selecionar: async () => {
 
 
         try {
-            // Busca todos os clientes + endereços
+            // posso trazer de forma separada
             const [clientes] = await connection.execute(`
                 SELECT 
-                    c.id,
-                    c.nome,
-                    c.cpf,
-                    e.IdCliente,
-                    e.Cep,
-                    e.Uf,
-                    e.Cidade,
-                    e.Bairro,
-                    e.Complemento,
-                    e.Logradouro,
-                    e.Numero
+                    *
                 FROM clientes c
-                LEFT JOIN enderecos e ON e.IdCliente = c.id
-                ORDER BY c.id DESC
+                INNER JOIN enderecos e ON e.IdCliente = c.id
+                INNER JOIN telefones t ON t.idCliente = c.id;
             `);
 
-            if (clientes.length === 0) {
-                return {
-                    sucesso: true,
-                    total: 0,
-                    clientes: []
-                };
-            }
-
-            // Busca todos os telefones
-            const [todosTelefones] = await connection.execute(`
-                SELECT IdCliente, Telefone 
-                FROM telefones 
-                ORDER BY IdCliente, id
-            `);
-
-            // Agrupa telefones por cliente
-            const telefonesPorCliente = new Map();
-            todosTelefones.forEach(tel => {
-                if (!telefonesPorCliente.has(tel.IdCliente)) {
-                    telefonesPorCliente.set(tel.IdCliente, []);
-                }
-                telefonesPorCliente.get(tel.IdCliente).push(tel.Telefone);
-            });
-
-            // Monta o retorno
-            const clientesCompletos = clientes.map(c => ({
-                id: c.id,
-                nome: c.nome,
-                cpf: c.cpf,
-                enderecosx: {
-                    Cep: c.Cep,
-                    Uf: c.Uf,
-                    Cidade: c.Cidade,
-                    Bairro: c.Bairro,
-                    Complemento: c.Complemento,
-                    Logradouro: c.Logradouro,
-                    Numero: c.Numero
-                },
-                telefones: telefonesPorCliente.get(c.id) || []
-            }));
-
-            return {
-                sucesso: true,
-                total: clientesCompletos.length,
-                clientes: clientesCompletos
-            };
+            return clientes;
 
         } catch (error) {
             console.error("Erro ao buscar clientes:", error);
