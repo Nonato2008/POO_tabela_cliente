@@ -32,9 +32,9 @@ export class Cliente {
         return this.#cpf
     }
 
-    set cpf(value) {
-        this.#validarCpf(value);
-        this.#cpf = value
+    set cpf(cpf) {
+        this.#validarCpf(cpf);
+        this.#cpf = cpf
     }
 
     //MÉTODOS AUXILIARES    
@@ -50,48 +50,43 @@ export class Cliente {
     }
 
     #validarCpf(cpf) {
-        if (!cpf) return { valido: false, mensagem: "CPF não informado" };
-
-        // Remove tudo que não for número
-        cpf = cpf.replace(/\D/g, '');
-
-        // Validações básicas
-        if (cpf.length !== 11) {
-            return { valido: false, mensagem: "CPF deve ter 11 dígitos" };
+        // Verifica se tem 11 dígitos ou se é sequência repetida
+        if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+            return false;
         }
 
-        if (/^(\d)\1{10}$/.test(cpf)) {
-            return { valido: false, mensagem: "CPF com todos os dígitos iguais" };
-        }
 
-        const digitos = cpf.split('').map(Number);
-
-        // Cálculo do 1º dígito verificador
         let soma = 0;
-        for (let i = 0; i < 9; i++) {
-            soma += digitos[i] * (10 - i);
-        }
-        let resto = soma % 11;
-        const dv1 = resto < 2 ? 0 : 11 - resto;
+        let resto;
 
-        if (dv1 !== digitos[9]) {
-            return { valido: false, mensagem: "Dígito verificador 1 inválido" };
+
+        // Validação do 1º dígito
+        for (let i = 1; i <= 9; i++) {
+            soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+        }
+        resto = (soma * 10) % 11;
+
+
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.substring(9, 10))) {
+            return false;
         }
 
-        // Cálculo do 2º dígito verificador
+
         soma = 0;
-        for (let i = 0; i < 10; i++) {
-            soma += digitos[i] * (11 - i);
+
+
+        // Validação do 2º dígito
+        for (let i = 1; i <= 10; i++) {
+            soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
         }
-        resto = soma % 11;
-        const dv2 = resto < 2 ? 0 : 11 - resto;
+        resto = (soma * 10) % 11;
 
-        const valido = dv2 === digitos[10];
 
-        return {
-            valido: valido,
-            mensagem: valido ? "CPF válido" : "Dígito verificador 2 inválido"
-        };
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.substring(10, 11))) {
+            return false;
+        }
 
     }
 
@@ -100,7 +95,7 @@ export class Cliente {
         return new Cliente(null, dados.nome, dados.cpf);
     }
     static alterar(dados, id) {
-        return new Cliente(id, dados.nome, dados.cpf);
-    }
+        return new Cliente(id, dados.nome,dados.cpf);
+    }   
 
 }

@@ -95,7 +95,9 @@ export class Endereco {
     }
 
     #validarCep(value) {
-        if (!value || value.trim().length < 9 || value.trim().length > 9) {
+        console.log('cep: ', value);
+        
+        if (!value || value.trim().length < 8 || value.trim().length > 8) {
             throw new Error('O campo cep é obrigatório e deve ter 9 caracteres');
         }
     }
@@ -103,7 +105,9 @@ export class Endereco {
     //Criação de projeto utilizando o Design Pattern FACTORY METHOD
 
     static criar(dados){
-        return new Endereco(null, dados.idCliente, dados.cep, dados.uf, dados.cidade, dados.bairro, dados.complemento, dados.logradouro, dados.numero);
+        console.log(dados.cep, dados.uf, dados.cidade, dados.bairro, dados.complemento, dados.logradouro, dados.numero);
+        
+        return new Endereco(null, null, dados.cep, dados.uf, dados.cidade, dados.bairro, dados.complemento, dados.logradouro, dados.numero);
     }
 
     static alterar(dados, id){

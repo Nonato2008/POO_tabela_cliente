@@ -33,4 +33,3 @@ class Database{
 }
 
 export const connection = Database.getInstance().getPool();
-export const pool = Database.getInstance().getPool();
